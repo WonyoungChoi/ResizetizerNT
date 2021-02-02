@@ -1,15 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.SampleApp.Tizen.Mobile" version="1.0.0">
-	<profile name="mobile" />
-	<ui-application appid="org.tizen.example.SampleApp.Tizen.Mobile"
-					exec="SampleApp.Tizen.Mobile.dll"
-					type="dotnet"
-					multiple="false"
-					taskmanage="true"
-					nodisplay="false"
-					launch_mode="single">
-  <label>SampleApp.Tizen.Mobile</label>
-	<icon>SampleApp.Tizen.Mobile.png</icon>
-        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
-	</ui-application>
+<manifest package="org.tizen.example.SampleApp.Tizen.Mobile" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+  <profile name="mobile" />
+  <ui-application appid="org.tizen.example.SampleApp.Tizen.Mobile" exec="SampleApp.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+    <label>SampleApp.Tizen.Mobile</label>
+    <icon>appicon.xhigh.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+    <splash-screens />
+  </ui-application>
+  <shortcut-list />
+  <dependencies />
+  <provides-appdefined-privileges />
 </manifest>
