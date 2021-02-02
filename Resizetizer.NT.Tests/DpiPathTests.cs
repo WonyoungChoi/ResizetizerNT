@@ -11,6 +11,7 @@ namespace Resizetizer.NT.Tests
 			[InlineData("ios", "Resources")]
 			[InlineData("uwp", "Assets")]
 			[InlineData("wpf", "")]
+			[InlineData("tizen", "res")]
 			public void ReturnsCorrectFolder(string platform, string folder)
 			{
 				var paths = DpiPath.GetOriginal(platform);
@@ -23,6 +24,7 @@ namespace Resizetizer.NT.Tests
 			[InlineData("ios", 1)]
 			[InlineData("uwp", 1)]
 			[InlineData("wpf", 4)]
+			[InlineData("tizen", 1)]
 			public void ReturnsCorrectScale(string platform, decimal scale)
 			{
 				var paths = DpiPath.GetOriginal(platform);

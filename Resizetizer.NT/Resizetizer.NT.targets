@@ -238,27 +238,22 @@
 			</Resource>
 			<FileWrites Include="@(_ResizetizerCollectedImages)" />
 		</ItemGroup>
-		
+
 		<!-- Tizen -->
+		<PropertyGroup>
+			<ResizetizerIntermediateOutputAbsolutePath>$([System.IO.Path]::GetFullPath('$(ResizetizerIntermediateOutputPath)'))</ResizetizerIntermediateOutputAbsolutePath>
+		</PropertyGroup>
+
 		<ItemGroup Condition="'$(_ResizetizerIsTizen)' == 'True'">
-			<TizenTpkUserIncludeFiles Include="$(ResizetizerIntermediateOutputPath)\MDPI\*.png">
+			<TizenTpkUserIncludeFiles Include="$(ResizetizerIntermediateOutputAbsolutePath)res\res.xml">
 				<TizenTpkSubDir>res\</TizenTpkSubDir>
 			</TizenTpkUserIncludeFiles>
+			<FileWrites Include="$(ResizetizerIntermediateOutputAbsolutePath)res\res.xml)" />
+		</ItemGroup>
 
-			<TizenTpkUserIncludeFiles Include="$(ResizetizerIntermediateOutputPath)\MDPI\*.png">
-				<TizenTpkSubDir>res\contents\default_All-MDPI\</TizenTpkSubDir>
-			</TizenTpkUserIncludeFiles>
-			<TizenTpkUserIncludeFiles Include="$(ResizetizerIntermediateOutputPath)\HDPI\*.png">
-				<TizenTpkSubDir>res\contents\default_All-HDPI\</TizenTpkSubDir>
-			</TizenTpkUserIncludeFiles>
-			<TizenTpkUserIncludeFiles Include="$(ResizetizerIntermediateOutputPath)\XHDPI\*.png">
-				<TizenTpkSubDir>res\contents\default_All-XHDPI\</TizenTpkSubDir>
-			</TizenTpkUserIncludeFiles>
-			<TizenTpkUserIncludeFiles Include="$(ResizetizerIntermediateOutputPath)\XXHDPI\*.png">
-				<TizenTpkSubDir>res\contents\default_All-XXHDPI\</TizenTpkSubDir>
-			</TizenTpkUserIncludeFiles>
-			<TizenTpkUserIncludeFiles Include="$(ResizetizerIntermediateOutputPath)\XXXHDPI\*.png">
-				<TizenTpkSubDir>res\contents\default_All-XXXHDPI\</TizenTpkSubDir>
+		<ItemGroup Condition="'$(_ResizetizerIsTizen)' == 'True'">
+			<TizenTpkUserIncludeFiles Include="@(_ResizetizerCollectedImages)">
+				<TizenTpkSubDir>$([MSBuild]::MakeRelative($(ResizetizerIntermediateOutputAbsolutePath), $([System.IO.Path]::GetFullPath('%(_ResizetizerCollectedImages.RelativeDir)'))))</TizenTpkSubDir>
 			</TizenTpkUserIncludeFiles>
 			<FileWrites Include="@(_ResizetizerCollectedImages)" />
 		</ItemGroup>
