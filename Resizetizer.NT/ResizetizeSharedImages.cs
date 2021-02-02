@@ -95,7 +95,7 @@ namespace Resizetizer
 					else if (PlatformType == "ios")
 					{
 						Log.LogMessage(MessageImportance.Low, $"iOS Icon Assets Generator");
-					
+
 						var appleAssetGen = new AppleIconAssetsGenerator(img, appIconName, IntermediateOutputPath, appIconDpis, this);
 
 						var assetsGenerated = appleAssetGen.Generate();
@@ -135,7 +135,7 @@ namespace Resizetizer
 						foreach (var dpi in dpis)
 						{
 							Log.LogMessage(MessageImportance.Low, $"Resizing {img.Filename}");
-					
+
 							var r = resizer.Resize(dpi, InputsFile);
 							resizedImages.Add(r);
 
@@ -158,7 +158,13 @@ namespace Resizetizer
 					Log.LogMessage(MessageImportance.Low, $"{op} took {opStopwatch.ElapsedMilliseconds}ms");
 				}
 			});
-			
+
+			if (PlatformType == "tizen")
+			{
+				var tizenResourceXmlGenerator = new TizenResourceXmlGenerator(IntermediateOutputPath, Logger);
+				tizenResourceXmlGenerator.Generate();
+			}
+
 			var copiedResources = new List<TaskItem>();
 
 			foreach (var img in resizedImages)
